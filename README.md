@@ -46,7 +46,7 @@ The following languages, framework and libraries were used in the creation:
 + [create-react-app](https://github.com/facebook/create-react-app)
 
 ## Screenshot
-![Calculator Screenshot](./calculator.png)
+![Calculator Screenshot](./public/calculator.png)
 
 ## Credit
 + created by [Nial Hope](https://github.com/nhope123)
