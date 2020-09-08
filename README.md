@@ -2,8 +2,8 @@
 # Calculator
 Web base app for performing standard mathematical computations.
 
-## function
-### Computational function include:
+## Functions
+### Computational functions include:
 + Multiplication
 + Division
 + Subtraction
@@ -13,7 +13,7 @@ Web base app for performing standard mathematical computations.
 
 ## Display
 There is a two level display, one for immediate input and another for the acquired
-equation. The acquired equation is located at the of the display followed by the
+equation. The acquired equation is located at the of the display screen followed by the
 immediate input.
 
 ## functionality
@@ -32,20 +32,21 @@ immediate input.
 + When consecutive computational operators are selected, the last operator is
 used (excluding the negative (-) sign).
 + Selecting a computational operator after an equal operator will start a new equation containing the result from the previous equation.
++ Selecting a decimal point after an equal operator will start a new equation containing a decimal starting with a zero (0.).
 + Formula logic is used for this Calculator's logic, where order of operation precedence is observed.
 
 ## Implementation
 The following languages, framework and libraries were used in the creation:
 + Html5
 + Css3
-  + Grid box (for responsiveness)
+  + Grid box (for layout and responsiveness)
 + JavaScript ES6
 + React
 + [mathjs](https://mathjs.org/)
 + [create-react-app](https://github.com/facebook/create-react-app)
 
 ## Screenshot
-![Calculator Screenshot](calculator.png)
+![Calculator Screenshot](./calculator.png)
 
 ## Credit
 + created by [Nial Hope](https://github.com/nhope123)
