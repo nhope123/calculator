@@ -54,3 +54,6 @@ The following languages, framework and libraries were used in the creation:
 
 ## Acknowledgement
 Thank you to [Freecodecamp.org](https://www.freecodecamp.org/) for the project idea.
+
+## License
+Calculator is an open source software licensed as [GNU General Public License v3.0](LICENSE)
