@@ -6,17 +6,17 @@ import './index.css';
 let sign = ["/","*","-","+"];
 let numbers = ["1","2","3","4","5","6","7","8","9"];
 
-
+// component for all buttons
 class Button extends React.Component{
   render(){
     return(
-        <button type="button" value={this.props.value} id={this.props.id} onClick={this.props.click}>
+        <button type="button" value={this.props.value} id={this.props.id} tabindex='0' onClick={this.props.click}>
           {this.props.value}
         </button>
     );
   }
 }
-
+// Main calculator component
 export class Calculator extends React.Component{
   constructor(props){
     super(props);
@@ -36,21 +36,19 @@ export class Calculator extends React.Component{
   componentDidMount(){
     document.addEventListener('keydown', this.keyPressed);
   }
-/*  componentWillUnmount(){
-    document.addEventListener('keypress', this.keyPressed);
-  }*/
+  // Handle all keyboard keydown events
   keyPressed(event){
     console.log('keypress' + event.keyCode);
     // if key pressed is a number
     if ((event.keyCode > 48 && event.keyCode < 58 ) || (event.keyCode > 96 && event.keyCode < 106 )) {
       this.putNumbers(event);
-    }
+    }    // If key pressed is a sign
     else if ([106, 109, 107, 111, 191].includes(event.keyCode)) {
       this.putSign(event);
-    }
+    }   // If key pressed is a zero
     else if (event.keyCode === 48 || event.keyCode === 96) {
       this.putZero(event);
-    }
+    }   // If key pressed is a decimal
     else if (event.keyCode === 46 || event.keyCode === 110) {
       this.putDecimal();
     }
@@ -98,7 +96,6 @@ export class Calculator extends React.Component{
   // inputed decimal is added to display
   putDecimal(){
     var eqSign = '.';
-
     var input = this.state.inputValue;
     var output = this.state.outputValue;
 
@@ -175,44 +172,52 @@ export class Calculator extends React.Component{
     this.setState({outputValue: '0', inputValue: '0'});
   }
   render(){
-
     return(
-      <section id="calculator-container">
-        <div id='cal-display' >
-          <div id='output' >
-            {this.state.outputValue}
-          </div>
-          <div id='display' >
-            {this.state.inputValue}
-          </div>
+      <div >
+        <section id="calculator-container">
+          <div id='cal-display' >
+            <div id='output' >
+              {this.state.outputValue}
+            </div>
+            <div id='display' >
+              {this.state.inputValue}
+            </div>
 
+          </div>
+          <article id='button-pad' >
+            {/* First row of buttons */}
+            <Button {...{id:'clear', value:'C', click: this.initialize }} />
+            <Button {...{id:'divide', value: sign[0], click: this.putSign }} />
+            <Button {...{id:'multiply', value: sign[1], click: this.putSign }} />
+            <Button {...{id:'subtract', value: sign[2], click: this.putSign }} />
+            {/* First row of buttons */}
+            <Button {...{id:'seven', value: numbers[6], click: this.putNumbers}} />
+            <Button {...{id:'eight', value: numbers[7], click: this.putNumbers}} />
+            <Button {...{id:'nine', value:numbers[8], click: this.putNumbers}} />
+            <Button {...{id:'add', value: sign[3], click: this.putSign }} />
+            {/* First row of buttons */}
+            <Button {...{id:'four', value: numbers[3], click: this.putNumbers}} />
+            <Button {...{id:'five', value: numbers[4], click: this.putNumbers}} />
+            <Button {...{id:'six', value: numbers[5], click: this.putNumbers}} />
+            {/* First row of buttons */}
+            <Button {...{id:'one', value: numbers[0], click: this.putNumbers}} />
+            <Button {...{id:'two', value: numbers[1], click: this.putNumbers}} />
+            <Button {...{id:'three', value: numbers[2], click: this.putNumbers}} />
+            {/* First row of buttons */}
+            <Button {...{id:'zero', value: '0', click: this.putZero}} />
+            <Button {...{id:'decimal', value:'.', click: this.putDecimal }} />
+            <Button {...{id:'equals', value:'=', click: this.calculate}} />
+
+          </article>
+        </section>
+        <div id='credit' >
+          by Nial
+          <a href="https://github.com/nhope123/calculator" title='github repo' target='_blank' rel="noopener noreferrer" >
+            <i className="fa fa-github" aria-hidden="true"></i>
+          </a>
         </div>
-        <article id='button-pad' >
-          {/* First row of buttons */}
-          <Button {...{id:'clear', value:'C', click: this.initialize }} />
-          <Button {...{id:'divide', value: sign[0], click: this.putSign }} />
-          <Button {...{id:'multiply', value: sign[1], click: this.putSign }} />
-          <Button {...{id:'subtract', value: sign[2], click: this.putSign }} />
-          {/* First row of buttons */}
-          <Button {...{id:'seven', value: numbers[6], click: this.putNumbers}} />
-          <Button {...{id:'eight', value: numbers[7], click: this.putNumbers}} />
-          <Button {...{id:'nine', value:numbers[8], click: this.putNumbers}} />
-          <Button {...{id:'add', value: sign[3], click: this.putSign }} />
-          {/* First row of buttons */}
-          <Button {...{id:'four', value: numbers[3], click: this.putNumbers}} />
-          <Button {...{id:'five', value: numbers[4], click: this.putNumbers}} />
-          <Button {...{id:'six', value: numbers[5], click: this.putNumbers}} />
-          {/* First row of buttons */}
-          <Button {...{id:'one', value: numbers[0], click: this.putNumbers}} />
-          <Button {...{id:'two', value: numbers[1], click: this.putNumbers}} />
-          <Button {...{id:'three', value: numbers[2], click: this.putNumbers}} />
-          {/* First row of buttons */}
-          <Button {...{id:'zero', value: '0', click: this.putZero}} />
-          <Button {...{id:'decimal', value:'.', click: this.putDecimal }} />
-          <Button {...{id:'equals', value:'=', click: this.calculate}} />
+      </div>
 
-        </article>
-      </section>
     );
   }
 }

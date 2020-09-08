@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Calculator
+Web base app for performing standard mathematical computations.
 
-In the project directory, you can run:
+## function
+### Computational function include:
++ Multiplication
++ Division
++ Subtraction
++ Addition
+### Additional function:
++ Clear / Reset
 
-### `npm start`
+## Display
+There is a two level display, one for immediate input and another for the acquired
+equation. The acquired equation is located at the of the display followed by the
+immediate input.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## functionality
++ This Calculator can be operated by the click of Mouse, a Touch pad, the Tab button or a Numeric keypad.
++ Equations containing the following elements can be evaluated:
+  + Multiplication
+  + Division
+  + Addition
+  + Subtraction
+  + Negative numbers
+  + Positive numbers
+  + Integer numbers
+  + Decimal numbers
++ Integer number cannot begin with a zero.
++ Decimal number cannot begin with multiple zeros before the decimal point.
++ When consecutive computational operators are selected, the last operator is
+used (excluding the negative (-) sign).
++ Selecting a computational operator after an equal operator will start a new equation containing the result from the previous equation.
++ Formula logic is used for this Calculator's logic, where order of operation precedence is observed.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Implementation
+The following languages, framework and libraries were used in the creation:
++ Html5
++ Css3
+  + Grid box (for responsiveness)
++ JavaScript ES6
++ React
++ [mathjs](https://mathjs.org/)
++ [create-react-app](https://github.com/facebook/create-react-app)
 
-### `npm test`
+## Screenshot
+![Calculator Screenshot](calculator.png)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Credit
++ created by [Nial Hope](https://github.com/nhope123)
+  + [Portfolio](https://nhope123.github.io/)
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Acknowledgement
+Thank you to [Freecodecamp.org](https://www.freecodecamp.org/) for the project idea.

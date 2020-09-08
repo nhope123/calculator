@@ -4,6 +4,6 @@ import './index.css';
 import * as cal from './calculate.js';
 
 ReactDOM.render(
-  < cal.Calculator/>,
+    < cal.Calculator/>,
   document.getElementById('root')
 );

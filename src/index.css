@@ -1,10 +1,9 @@
 *{box-sizing: border-box;}
 :root{
-  --numbers-button: #7d7d82;
-  --signs-button: #296278;
+  --numbers-button:#57575C;
+  --signs-button: #295875;
   --clear-button: #FD823F;
 }
-
 
 body {
   margin: 0;
@@ -20,14 +19,37 @@ code {
 }
 .main-container{
   display: grid;
-  grid-template-areas: "m";
+  grid-template-areas: "m" "cr";
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
   justify-items: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
-  background-color: #347B98; /* #31b4e8; */
+  min-height: 100vh;
+  background-color: #275F72;
+}
+#credit{
+  grid-area: cr;
+  display: block;
+  padding: 20px 15px 5px 15px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 15px;
+  text-align: center;
+}
+#credit i{
+  display: block;
+  float: right;
+  font-size: 23px;
+  background-color: rgba(0,0,0,0.0);
+  color: white;
+  cursor: pointer;
+}
+#credit i:hover{
+  transform: scale(1.2);
+  transition-duration: 1s;
 }
 #calculator-container{
   border: 0px outset blue;
@@ -43,10 +65,8 @@ code {
   height: 500px;
   padding: 20px;
   grid-gap: 20px;
-  background-color: #82CCE9; /* #D4EDF7;  #104256; */
-  box-shadow: 4px 4px 5px #4b4b4e, 8px 8px 15px  #13536c;
-
-
+  background-color: #82CCE9;
+  box-shadow: 8px 8px 10px 10px #285571, 8px 8px 15px  #b1b1b4;
 }
 #cal-display{
   grid-area: ds;
@@ -60,7 +80,6 @@ code {
   color: #291307;
   font-weight: bold;
   overflow-x: auto;
-
 }
 #button-pad{
   grid-area: bp;
@@ -74,16 +93,16 @@ code {
                        "zr zr dt eq";
   grid-gap: 10px;
   justify-content: center;
-
 }
 
 #clear {
   grid-area: cl;
-  background-color: var(--clear-button); /*    #913D10; */
+  background-color: var(--clear-button);
+  color: black;
  }
 #one, #two, #three, #four, #five, #six, #seven,
-#eight, #nine, #zero, #decimal{ background-color: var(--numbers-button);}
-#divide, #multiply, #subtract, #add, #equals{ background-color: var(--signs-button);}
+#eight, #nine, #zero, #decimal{ background-color: var(--numbers-button); color: white;}
+#divide, #multiply, #subtract, #add, #equals{ background-color: var(--signs-button); color: white;}
 #divide {grid-area: dv;}
 #multiply {grid-area: mt;}
 #subtract {grid-area: sb;}
@@ -105,6 +124,5 @@ button{
   border-radius: 8px;
   font-weight: bold;
   font-size: 19px;
-  color: white;
   box-shadow: 2px 2px 3px #13536c;
 }
