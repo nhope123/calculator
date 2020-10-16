@@ -16,7 +16,7 @@ There is a two level display, one for immediate input and another for the acquir
 equation. The acquired equation is located at the of the display screen followed by the
 immediate input.
 
-## functionality
+## Functionality
 + This Calculator can be operated by the click of Mouse, a Touch pad, the Tab button or a Numeric keypad.
 + Equations containing the following elements can be evaluated:
   + Multiplication
