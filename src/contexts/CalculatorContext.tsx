@@ -1,6 +1,7 @@
 import React, {createContext, FC, useState}from 'react'
 
-interface ContextValues{
+
+interface CalculatorContextState{
   result?: number,
   setResult?:any,
   equationInputString?: string, 
@@ -8,7 +9,7 @@ interface ContextValues{
 }
 
 
-const CalculatorContext = createContext<ContextValues >({})
+export const CalculatorContext = createContext<CalculatorContextState >(null as never)
 
 const CalculatorContextProvider: FC= (props) => {
   const [result, setResult] = useState(0)
