@@ -1,12 +1,13 @@
 import React, { FC, useContext } from 'react'
 import {CalculatorContext} from '../contexts/CalculatorContext'
 
-const Display: FC = (props) => {
-  const {result, equationInputString} = useContext(CalculatorContext)
+const Display: FC = () => {  
+  
+  const {data} = useContext(CalculatorContext)
   return (
     <div>
-      <div >{equationInputString}</div>
-      <div >{result}</div>
+      <div >{data?.equation}</div>
+      <div >{data?.result}</div>
     </div>
   )
 }

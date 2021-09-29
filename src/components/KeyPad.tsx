@@ -1,21 +1,15 @@
-import { Button } from '@material-ui/core'
-import React, { FC, useContext } from 'react'
-import { CalculatorContext } from '../contexts/CalculatorContext'
+import React, { FC} from 'react'
 import ButtonSet from './ButtonSet'
-
 
 const buttonValues = [
   ['C','/','*','-'],
-  ['7','8','9','+'],
-  ['4','5','6'],
-  ['1','2','3','='],
-  ['0','.',]
-
+  [7,8,9,'+'],
+  [4,5,6],
+  [1,2,3,'='],
+  [0,'.',]
 ]
 
 const KeyPad: FC = (props) => {
-
-  const {setEquation} = useContext(CalculatorContext)
 
   return (
     <div>

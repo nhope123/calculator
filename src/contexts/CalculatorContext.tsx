@@ -1,30 +1,53 @@
 import React, {createContext, FC, useState}from 'react'
+import { calculate, processNumber, processPeriod, processSigns } from '../helpers/calculation'
 
 
-interface CalculatorContextState{
-  result?: number,
+interface CalculatorContextProps{
+  data?: CalculatorContextState,
   setResult?: any,
   equationInputString?: string, 
   setEquation?: any,
 }
 
+interface CalculatorContextState{
+  result: number,
+  equation: string,
+  stagingData: string
+}
 
-export const CalculatorContext = createContext<CalculatorContextState >(null as never)
+const defaultState = {result: 0, equation: '0', stagingData: '0'}
+
+export const CalculatorContext = createContext<CalculatorContextProps >(null as never)
 
 const CalculatorContextProvider: FC = (props) => {
-  const [result, setResult] = useState(0)
-  const [equationInputString, setEquationInputString] = useState('0')
+
+  const [calculatorData, setCalculatorData] = useState<CalculatorContextState>( defaultState )
 
   const formatEquation = (symbol: string) =>{
-    setEquationInputString(symbol)
+    (symbol === 'C')? setCalculatorData(()=> defaultState) :
+      (symbol === '.')? setCalculatorData(state=>({
+        ...state,
+        ...processPeriod( calculatorData?.stagingData 
+      )}) ):
+        (symbol === '=')? setCalculatorData(state=>({
+          ...state,
+          ...calculate(calculatorData?.stagingData, calculatorData?.equation)
+        })):
+      (typeof symbol === 'number')? setCalculatorData(state =>({
+        ...state, 
+        ...processNumber(calculatorData?.stagingData, calculatorData?.equation, symbol)
+      })) : 
+      setCalculatorData(state=>({
+        ...state,
+        ...processSigns(calculatorData?.stagingData, calculatorData?.equation)
+      }))
+  
   }
 
   return (
     <div>
       <CalculatorContext.Provider value={{
-        result, 
-        setResult,
-        equationInputString, 
+        data: calculatorData,
         setEquation: formatEquation
         }} >
         {props.children}
