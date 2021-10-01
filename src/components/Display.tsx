@@ -1,13 +1,13 @@
 import React, { FC, useContext } from 'react'
-import {CalculatorContext} from '../contexts/CalculatorContext'
+import CalculatorContext from '../contexts/CalculatorContext'
 
 const Display: FC = () => {  
   
   const {data} = useContext(CalculatorContext)
   return (
-    <div>
+    <div >
       <div >{data?.equation}</div>
-      <div >{data?.result}</div>
+      <div id={'display'} >{data?.result}</div>
     </div>
   )
 }

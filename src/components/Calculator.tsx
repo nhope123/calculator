@@ -1,6 +1,6 @@
 import { Box } from '@material-ui/core'
 import React, { FC } from 'react'
-import CalculatorContextProvider from '../contexts/CalculatorContext'
+import {CalculatorContextProvider} from '../contexts/CalculatorContext'
 import Display from './Display'
 import KeyPad from './KeyPad'
 

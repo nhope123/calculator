@@ -1,6 +1,6 @@
 import { Button } from '@material-ui/core'
 import React, { FC, useContext } from 'react'
-import { CalculatorContext } from '../contexts/CalculatorContext'
+import CalculatorContext from '../contexts/CalculatorContext'
 
 interface ButtonSetProps{
   content: any[]
@@ -8,7 +8,8 @@ interface ButtonSetProps{
 
 const ButtonSet: FC<ButtonSetProps> = (props) => {
 
-  const {setEquation} = useContext(CalculatorContext)
+  const {setButtonInput} = useContext(CalculatorContext)
+  // onClick={()=>setEquation(element[0])}
   return (
     <div >
         {
@@ -16,11 +17,12 @@ const ButtonSet: FC<ButtonSetProps> = (props) => {
             return (
               <Button 
                       variant={'contained'} 
-                      key={element} 
-                      onClick={()=>setEquation(element)} 
+                      key={element[1]} 
+                      id={element[1]}
+                      onClick={()=>setButtonInput(element[0])} 
                       tabIndex={0} 
                       >
-                {element}
+                {element[0]}
               </Button>
             )
           })

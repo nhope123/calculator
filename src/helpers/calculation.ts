@@ -1,25 +1,33 @@
 import {evaluate} from 'mathjs'
+import { CalculatorState } from '../contexts/CalculatorContext'
 
 interface ResultValues{
-  stagingData: string,
-  equation: string
+  resultData: string,
+  equationValue : string
 }
 const symbols = ['/','*','-','+']
-export const processNumber = (stageValue:string, equationValue: string, input: string | number): ResultValues => {
-  const [stagingData, equation] = (symbols.includes(stageValue[stageValue.length -1 ] ))? 
-                                  [input.toString(), equationValue + stageValue]:
-                                (stageValue === '0')? 
-                                  [input.toString(), equationValue]: 
-                                  [stageValue + input, equationValue]
-  return {stagingData, equation }  
+export const processNumber = ( stateValues: CalculatorState,input: string ): CalculatorState => {
+  const {result, equation} = stateValues
+
+  const [resultData, equationValue] = (symbols.includes(result[result.length -1 ] ))? 
+                                        [input, equation + input]:
+                                      (result === '0')? 
+                                        [input, equation.slice(0,equation.length -1) + input]: 
+                                        [result + input, equation + input]
+  return {result: resultData, equation: equationValue }  
 }
 
-export  const processPeriod = (stageValue: string) =>{
-  return (!stageValue.includes('.') || symbols.filter(sign => stageValue.includes(sign)).length === 0 )? 
-          {stagingData: stageValue + '.'}: 
-          {stagingData: stageValue}
-}
 
+export  const processPeriod = ( stateValues: CalculatorState,input: string ): CalculatorState => {
+  const {result, equation} = stateValues
+
+  return ({result:'0', equation: '0'})
+
+ /* return (!result.includes('.') || symbols.filter(sign => stageValue.includes(sign)).length === 0 )? 
+          {resultData: stageValue + '.'}: 
+          {resultData: stageValue}*/
+}
+/*
 export const calculate = (stageValue: string, equationValue: string) =>{
   const value = (symbols.filter(sign => stageValue.includes(sign)).length !== 0)? [evaluate(equationValue), equationValue] :
                   (stageValue[stageValue.length -1] !== '.')? [evaluate(equationValue + stageValue + '0'), equationValue + stageValue + '0'] :
@@ -27,7 +35,7 @@ export const calculate = (stageValue: string, equationValue: string) =>{
   return({
     result: value[0],
     equation:value[1],
-    stagingData: '='
+    resultData: '='
   })
 }
 
@@ -35,7 +43,7 @@ export const processSigns = (stageValue: string, equationValue: string) =>{
   return({
     result: 0,
     equation: '0',
-    stagingData: '0'
+    resultData: '0'
   })
 }
 

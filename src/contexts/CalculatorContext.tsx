@@ -1,59 +1,49 @@
-import React, {createContext, FC, useState}from 'react'
-import { calculate, processNumber, processPeriod, processSigns } from '../helpers/calculation'
+import React, { createContext, FC, useState } from 'react'
+import { processNumber, processPeriod } from '../helpers/calculation'
 
-
-interface CalculatorContextProps{
-  data?: CalculatorContextState,
-  setResult?: any,
-  equationInputString?: string, 
-  setEquation?: any,
+interface CalculatorState{
+  result: string ,
+  equation: string
 }
 
-interface CalculatorContextState{
-  result: number,
-  equation: string,
-  stagingData: string
+interface ContextValues{
+  data: CalculatorState,
+  setButtonInput: (input: string | number) => void
 }
 
-const defaultState = {result: 0, equation: '0', stagingData: '0'}
-
-export const CalculatorContext = createContext<CalculatorContextProps >(null as never)
+const defaultState = {result: '0', equation: '0'}
+const CalculatorContext =  createContext<ContextValues>(null as never)
 
 const CalculatorContextProvider: FC = (props) => {
 
-  const [calculatorData, setCalculatorData] = useState<CalculatorContextState>( defaultState )
+  const [data, setData] = useState<CalculatorState>(defaultState)
 
-  const formatEquation = (symbol: string) =>{
-    (symbol === 'C')? setCalculatorData(()=> defaultState) :
-      (symbol === '.')? setCalculatorData(state=>({
-        ...state,
-        ...processPeriod( calculatorData?.stagingData 
-      )}) ):
-        (symbol === '=')? setCalculatorData(state=>({
-          ...state,
-          ...calculate(calculatorData?.stagingData, calculatorData?.equation)
-        })):
-      (typeof symbol === 'number')? setCalculatorData(state =>({
-        ...state, 
-        ...processNumber(calculatorData?.stagingData, calculatorData?.equation, symbol)
-      })) : 
-      setCalculatorData(state=>({
-        ...state,
-        ...processSigns(calculatorData?.stagingData, calculatorData?.equation)
-      }))
-  
+  const setButtonInput = (input: string | number) =>{
+    // Process input
+    //console.log(input);
+    if(input === 'C'){ setData(defaultState) }
+    else if(input === '.'){setData(()=> processPeriod(data, input))}
+    else if(typeof input === 'number'){
+      setData(()=> processNumber(data, input.toString()))
+    }
+    
+    
   }
 
   return (
-    <div>
-      <CalculatorContext.Provider value={{
-        data: calculatorData,
-        setEquation: formatEquation
-        }} >
-        {props.children}
-      </CalculatorContext.Provider >      
-    </div>
+    <CalculatorContext.Provider value={{
+      data,
+      setButtonInput
+    }} >
+      {props.children}
+    </CalculatorContext.Provider >
   )
 }
 
-export default CalculatorContextProvider
+export default CalculatorContext
+export {
+  CalculatorContextProvider,
+}
+export type {
+  CalculatorState
+}

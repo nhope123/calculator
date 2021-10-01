@@ -2,11 +2,11 @@ import React, { FC} from 'react'
 import ButtonSet from './ButtonSet'
 
 const buttonValues = [
-  ['C','/','*','-'],
-  [7,8,9,'+'],
-  [4,5,6],
-  [1,2,3,'='],
-  [0,'.',]
+  [['C','clear'],['/','divide'],['*','multiply'],['-','subtract']],
+  [[7,'seven'],[8,'eight'],[9,'nine'],['+','add']],
+  [[4,'four'],[5,'five'],[6,'six']],
+  [[1,'one'],[2,'two'],[3,'three'],['=','equals']],
+  [[0,'zero'],['.','decimal']]
 ]
 
 const KeyPad: FC = (props) => {
