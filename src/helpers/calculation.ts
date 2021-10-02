@@ -1,4 +1,3 @@
-import {evaluate} from 'mathjs'
 import { CalculatorState } from '../contexts/CalculatorContext'
 
 interface ResultValues{
@@ -29,13 +28,15 @@ export  const processPeriod = ( stateValues: CalculatorState,input: string ): Ca
 }
 
 export const processSigns = ( stateValues: CalculatorState, input: string ): CalculatorState => {
+  const {result, equation} = stateValues
+  return (equation.includes('='))? ({equation:  result + input, result: input}):
+          (result.split('').filter(sign => [...symbols].includes(sign)).length === 0 )? ({result: input, equation: equation + input}):
+          (result[result.length -1] === '.')? ({result: input, equation: equation + '0' + input}):
+          ((result.split('').filter(sign => symbols.includes(sign)).length !== 0 ) && result.length > 1 )? ({result: input, equation: equation.slice(0,(equation.length - result.length)) + input}): 
+          (result.length === 1 && input === '-')? ({result: result + input, equation: equation + input}):
+          ({equation: equation.slice(0,(equation.length - result.length)) + input , result: input})
+
   
-  
-  return({
-    result: '0',
-    equation: '0',
-    
-  })
 }
 /*
 export const calculate = (stageValue: string, equationValue: string) =>{
