@@ -26,6 +26,9 @@ const CalculatorContextProvider: FC = (props) => {
     else if(typeof input === 'number'){
       setData(()=> processNumber(data, input.toString()))
     }
+    else{
+      setData(()=>)
+    }
     
     
   }

@@ -6,6 +6,7 @@ interface ResultValues{
   equationValue : string
 }
 const symbols = ['/','*','-','+']
+
 export const processNumber = ( stateValues: CalculatorState,input: string ): CalculatorState => {
   const {result, equation} = stateValues
 
@@ -17,15 +18,24 @@ export const processNumber = ( stateValues: CalculatorState,input: string ): Cal
   return {result: resultData, equation: equationValue }  
 }
 
-
 export  const processPeriod = ( stateValues: CalculatorState,input: string ): CalculatorState => {
   const {result, equation} = stateValues
 
-  return ({result:'0', equation: '0'})
+  return (result.split('').filter(sign => symbols.includes(sign)).length !== 0 )? 
+          ({result:'0.', equation: equation + '0.'}) : 
+            (result.includes('.'))?
+              ({result, equation}):
+                ({result: result + '.' , equation: equation + '.'})
+}
 
- /* return (!result.includes('.') || symbols.filter(sign => stageValue.includes(sign)).length === 0 )? 
-          {resultData: stageValue + '.'}: 
-          {resultData: stageValue}*/
+export const processSigns = ( stateValues: CalculatorState, input: string ): CalculatorState => {
+  
+  
+  return({
+    result: '0',
+    equation: '0',
+    
+  })
 }
 /*
 export const calculate = (stageValue: string, equationValue: string) =>{
@@ -37,15 +47,9 @@ export const calculate = (stageValue: string, equationValue: string) =>{
     equation:value[1],
     resultData: '='
   })
-}
+}*/
 
-export const processSigns = (stageValue: string, equationValue: string) =>{
-  return({
-    result: 0,
-    equation: '0',
-    resultData: '0'
-  })
-}
+
 
 /*
 putZero(event){
