@@ -1,3 +1,4 @@
+import { Box, makeStyles } from '@material-ui/core'
 import React, { FC} from 'react'
 import ButtonSet from './ButtonSet'
 
@@ -9,16 +10,30 @@ const buttonValues = [
   [[0,'zero'],['.','decimal']]
 ]
 
+const useStyles = makeStyles((theme) => ({
+  topRow:{
+    width: '100%',
+    height: '65px',
+  }
+}))
+
 const KeyPad: FC = (props) => {
 
+
+
   return (
-    <div>
+    <Box >
       {/* Upper level button set */}
-      <ButtonSet {...{content: buttonValues[0]}}   />
+      <Box >
+        <ButtonSet {...{content: buttonValues[0]}}   />
+      </Box >
       {/* Middle level button set */}
+
+      <br/> <br/>
       <div >
         <div >
           <ButtonSet {...{content: buttonValues[1].slice(0,3)}} />
+          <br/>
           <ButtonSet {...{content: buttonValues[2].slice(0,3)}} />          
         </div>
         <ButtonSet {...{content: buttonValues[1].slice(3)}} />
@@ -34,7 +49,7 @@ const KeyPad: FC = (props) => {
         <ButtonSet {...{content: buttonValues[3].slice(3)}} />
       </div>
 
-    </div>
+    </Box >
   )
 }
 

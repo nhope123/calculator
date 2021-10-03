@@ -1,6 +1,5 @@
 import React, { createContext, FC, useState } from 'react'
-import { processNumber, processPeriod, processSigns } from '../helpers/calculation'
-import {evaluate} from 'mathjs'
+import { processEqualSign, processNumber, processPeriod, processSigns } from '../helpers/calculation'
 
 interface CalculatorState{
   result: string ,
@@ -13,6 +12,7 @@ interface ContextValues{
 }
 
 const defaultState = {result: '0', equation: '0'}
+
 const CalculatorContext =  createContext<ContextValues>(null as never)
 
 const CalculatorContextProvider: FC = (props) => {
@@ -20,22 +20,13 @@ const CalculatorContextProvider: FC = (props) => {
   const [data, setData] = useState<CalculatorState>(defaultState)
 
   const setButtonInput = (input: string | number) =>{
-    // Process input
-    //console.log(input);
-    if(input === '='){
-      const solve = evaluate(data.equation)
-      setData({result: solve, equation: data.equation + '=' + solve})
-    } 
-    else if(input === 'C'){ setData(defaultState) }
-    else if(input === '.'){setData(()=> processPeriod(data, input))}
-    else if(typeof input === 'number'){
-      setData(()=> processNumber(data, input.toString()))
-    }
-    else{
-      setData(()=> processSigns(data, input.toString()))
-    }
-    
-    
+    setData(
+            (input === '=')? processEqualSign(data,input):
+              (input === 'C')? defaultState:
+                (input === '.')? processPeriod(data, input):
+                  (typeof input === 'number')? processNumber(data, input.toString()):
+                    processSigns(data, input.toString())
+    )    
   }
 
   return (
