@@ -42,10 +42,12 @@ export const processSigns = ( stateValues: CalculatorState, input: string ): Cal
 export const processEqualSign = ( stateValues: CalculatorState, input: string ): CalculatorState => {
   const {result,equation} = stateValues
 
+  if( equation.includes('=')){return stateValues}
   const newEquation = (result.split('').filter(sign => symbols.includes(sign)).length !== 0)?
                     (equation.slice(0,(equation.length - result.length))): equation
   const solution = evaluate(newEquation).toString()
-
+  console.log(solution);
+  
   return ({
     result: solution,
     equation: newEquation + '=' + solution

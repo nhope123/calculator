@@ -1,4 +1,5 @@
-import { Box, makeStyles, Typography } from '@material-ui/core'
+import { Box,IconButton, makeStyles, Typography } from '@material-ui/core'
+import GitHubIcon from '@material-ui/icons/GitHub'
 import React, { FC } from 'react'
 import Display from './Display'
 import KeyPad from './KeyPad'
@@ -13,11 +14,24 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   body:{
-    width: '300',
+    width: '273px',
     backgroundColor: '#82cce9',
     borderRadius: '10px',
-
-
+  },
+  footer:{
+    marginTop: '45px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  icon:{
+    color: 'white',
+    width: 'auto',
+  },
+  text:{
+    fontWeight: 'bold',
+    fontStyle: 'italic',
   }
 }))
 
@@ -29,13 +43,16 @@ const Calculator: FC = (props) => {
         <Display />
         <KeyPad />
       </Box >
-      <div id='credit' >
-        <Typography >{'by Nial'}</Typography>
-        
-        <a href="https://github.com/nhope123/calculator" title='github repo' target='_blank' rel="noopener noreferrer" >
-          <i className="fa fa-github" aria-hidden="true"></i>
+      <Box className={classes.footer} >
+        <Box m={3} >
+          <Typography className={classes.text}>{'by Nial'}</Typography>
+        </Box>
+        <IconButton  >
+        <a href="https://github.com/nhope123/calculator" title='github repo' target='_top' rel="noopener noreferrer" >
+          <GitHubIcon className={classes.icon} />
         </a>
-      </div>
+        </IconButton>
+      </Box>
     </Box>
   )
 }

@@ -8,9 +8,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '6px',
     border: '4px inset grey',
     marginBottom: '20px',
-    boxSizing:'border-box',
     padding: '8px 8px 4px',
-    
+    maxWidth: '240px',
+    overflowX: 'scroll',  
+    scrollbarColor: '#d9d9d9 #f2f2f3', 
   },
   text:{
     textAlign: 'right',
@@ -22,9 +23,9 @@ const Display: FC = () => {
   const classes = useStyles()
   const {data} = useContext(CalculatorContext)
   return (
-    <Box p={1} className={classes.body} >
-      <Typography component={'div'} className={classes.text} >{data?.equation}</Typography>
-      <Typography component={'div'} className={classes.text}  id={'display'} >{data?.result}</Typography>
+    <Box className={classes.body} >
+      <Typography  className={classes.text} >{data?.equation}</Typography>
+      <Typography  className={classes.text}  id={'display'} >{data?.result}</Typography>
     </Box>
   )
 }

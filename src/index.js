@@ -1,18 +1,18 @@
 import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-//import * as cal from './calculate.js';
 import Calculator from './components/Calculator';
 import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core';
 import { CalculatorContextProvider } from './contexts/CalculatorContext';
 
 const theme = createTheme({
-  text:{
-    fontWeight: 'bold',
-  }
-  
-})
+  palette:{
+    primary:{
+      main: '#57575c',
 
+    }
+  }  
+})
 
 ReactDOM.render(
   <StrictMode >
