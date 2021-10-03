@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.css"],"names":[],"mappings":"AAAA,EAAE,qBAAuB,CAEzB,gBACE,YAAa,CACb,eACF","file":"main.6701b64e.chunk.css","sourcesContent":["*{box-sizing: border-box;}\n\nhtml, body, #root{\n  height: 100vh;\n  overflow: hidden;\n}\n"]}
